@@ -181,6 +181,7 @@ in
     gost
     heroic
     homebank
+    i3-blocks-gaps
     jitsi-meet-electron
     kmon
     krita
@@ -197,12 +198,14 @@ in
     thunderbird
     tmux
     librewolf
+    picom-pijulius
     protonup
     pulsemixer
     pyradio
     python313Full
     qemu_full
     ranger
+    remmina
     ripgrep
     rofi
     shellcheck
