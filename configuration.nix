@@ -181,7 +181,7 @@ in
     gost
     heroic
     homebank
-    i3-blocks-gaps
+    i3blocks-gaps
     jitsi-meet-electron
     kmon
     krita
