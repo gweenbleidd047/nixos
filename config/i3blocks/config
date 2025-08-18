@@ -1,0 +1,15 @@
+[click]
+full_text=Превед!
+command=echo "Красаучик!"
+color=#F79494
+
+# Fetch the public IP address only on startup
+[public-ip]
+command=wget -qO - icanhazip.com
+interval=30
+color=#FF30FD
+
+# Update time every 5 seconds
+[time]
+command=date +%T
+interval=5
