@@ -177,6 +177,7 @@ in
     filezilla
     freeplane
     fzf
+    gh
     git
     gost
     heroic
@@ -198,6 +199,7 @@ in
     thunderbird
     tmux
     librewolf
+    p7zip
     picom-pijulius
     protonup
     pulsemixer
