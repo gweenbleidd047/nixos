@@ -42,6 +42,11 @@ in
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  networking.nameservers = [ "1.1.1.1" "8.4.4.8" ];
+  services.resolved = {
+    enable = true;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
@@ -50,7 +55,8 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocales = ["ru_RU.KOI8-R/KOI8-R" "ru_RU.UTF-8/UTF-8" "ru_RU/ISO-8859-5"];
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -160,6 +166,7 @@ in
   environment.systemPackages = with pkgs; [
     amneziawg-go
     amneziawg-tools
+    anydesk
     appimage-run
     arandr
     aria2
@@ -169,7 +176,10 @@ in
     btop
     cfonts
     chromium
+    cointop
+    deltachat-desktop
     dive
+    distrobox
     docker-compose
     fastfetch
     fd
@@ -177,47 +187,59 @@ in
     filezilla
     freeplane
     fzf
+    gemini-cli
     gh
     git
+    go
     gost
     heroic
     homebank
     i3blocks-gaps
+    isd
     jitsi-meet-electron
     kmon
     krita
     libreoffice-fresh
-    lutris
+    lolcat
     flameshot
     mangohud
     mpv
     multimarkdown
     ncdu
+    netscanner
     nmap
     nomacs
+    ntfs3g
     nvtopPackages.nvidia
     thunderbird
     tmux
     librewolf
+    ollama
     p7zip
-    picom-pijulius
     protonup
     pulsemixer
     pyradio
     python313Full
     qemu_full
+    qtox
     ranger
     remmina
+    retroshare
     ripgrep
     rofi
     shellcheck
+    speedtest
     sshuttle
     st
+    tmatrix
     unrar-wrapper
     unzip
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wavemon
     wget
     wikiman
+    wineWowPackages.staging
+    winetricks
     wireshark
     yt-dlp
     zathura
@@ -227,6 +249,16 @@ in
   fonts.packages = with pkgs; [
     source-code-pro
     anonymousPro
+    inconsolata
+    iosevka
+    noto-fonts
+    noto-fonts-cjk-sans
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    dina-font
+    dejavu_fonts
+    proggyfonts
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.hack
@@ -261,9 +293,8 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  virtualisation.docker.rootless = {
+  virtualisation.docker = {
     enable = true;
-    setSocketVariable = true;
     daemon.settings.features.cdi = true;
   };
 
@@ -273,7 +304,6 @@ in
 
   home-manager.users.gweenbleidd = { pkgs, ... }: {
     home.packages = with pkgs; [
-      cmatrix
       neofetch
       lazygit
     ];
