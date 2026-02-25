@@ -5,7 +5,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
 in
 
 {
@@ -64,7 +64,6 @@ in
   # };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -161,15 +160,19 @@ in
         gamescopeSession.enable = true;
       };
 
+  programs.nix-ld.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    alacritty
     amneziawg-go
     amneziawg-tools
     anydesk
     appimage-run
     arandr
     aria2
+    asn
     ayugram-desktop
     bandwhich
     bc
@@ -177,6 +180,7 @@ in
     cfonts
     chromium
     cointop
+    copyq
     deltachat-desktop
     dive
     distrobox
@@ -192,6 +196,7 @@ in
     git
     go
     gost
+    gpick
     heroic
     homebank
     i3blocks-gaps
@@ -200,9 +205,12 @@ in
     kmon
     krita
     libreoffice-fresh
+    llama-cpp
     lolcat
+    lshw
     flameshot
     mangohud
+    masscan
     mpv
     multimarkdown
     ncdu
@@ -214,17 +222,20 @@ in
     thunderbird
     tmux
     librewolf
-    ollama
+    ooniprobe-cli
     p7zip
-    protonup
+    pastel
+    patchelf
+    picom-pijulius
+    progress
+    protonup-ng
     pulsemixer
     pyradio
-    python313Full
+    python314
     qemu_full
     qtox
     ranger
     remmina
-    retroshare
     ripgrep
     rofi
     shellcheck
@@ -232,6 +243,7 @@ in
     sshuttle
     st
     tmatrix
+    translate-shell
     unrar-wrapper
     unzip
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -241,6 +253,7 @@ in
     wineWowPackages.staging
     winetricks
     wireshark
+    xev
     yt-dlp
     zathura
     zip
@@ -313,13 +326,13 @@ in
       };
       git = {
         enable = true;
-        userName  = "gweenbleidd";
-        userEmail = "gweenbleidd@example.com";
+        settings.user.name  = "gweenbleidd";
+        settings.user.email = "gweenbleidd@example.com";
       };
-      starship = {
-        enable = true;
+        # starship = {
+        #   enable = true;
         # Configuration written to ~/.config/starship.toml
-        settings = {
+        #   settings = {
         # add_newline = false;
 
         # character = {
@@ -327,8 +340,8 @@ in
         #   error_symbol = "[➜](bold red)";
         # };
         # package.disabled = true;
-        };
-      };
+        # };
+        # };
     };
     home.stateVersion = "25.05";
   };

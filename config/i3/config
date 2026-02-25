@@ -30,7 +30,7 @@ bindsym $mod+p title_format "%title | WinClass: %class"
 # print window titles of firefox windows red
 for_window [class="(?i)librewolf"] title_format "<span foreground='orange'>%title</span>"
 for_window [class="(?i)AyuGramDesktop"] title_format "<span foreground='cyan'>%title</span>"
-for_window [class="(?i)st-256color"] title_format "<span foreground='#FF30FD'>%title</span>"
+for_window [class="(?i)Alacritty"] title_format "<span foreground='#FF30FD'>%title</span>"
 for_window [class="(?i)Emacs"] title_format "<span foreground='yellow'>%title</span>"
 
 # use window title, but no border
@@ -68,13 +68,14 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:caps_toggle"
 # start dmenu (a program launcher)
 bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#56770F' -sf '#EEEEEE' -fn 'monospace-10' -p 'apps_list:'"
+bindsym $mod+Escape exec rofi -show drun -icon-theme "Papirus" -show-icons -font "iosevka 10"
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -190,10 +191,10 @@ mode "resize" {
         bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 2 px or 2 ppt
+        bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+        bindsym Right resize grow width 2 px or 2 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
