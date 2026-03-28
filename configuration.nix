@@ -8,6 +8,14 @@ let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
 in
 
+let
+  myNixpkgs = import (builtins.fetchGit {
+        name = "nixos-unstable-2026-03-28";
+        url = https://github.com/nixos/nixpkgs/;
+        rev = "d69e3ad79a01266e1b4ae53cfe86ec3f213b50d7";
+    }) {};
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -153,19 +161,18 @@ in
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        gamescopeSession.enable = true;
-      };
-
+  # programs.steam = {
+  #       enable = true;
+  #       remotePlay.openFirewall = true;
+  #       dedicatedServer.openFirewall = true;
+  #       gamescopeSession.enable = true;
+  # };
+  
   programs.nix-ld.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    alacritty
     amneziawg-go
     amneziawg-tools
     anydesk
@@ -175,45 +182,61 @@ in
     asn
     ayugram-desktop
     bandwhich
+    bat
     bc
     btop
     cfonts
     chromium
+    codex
     cointop
+    conda
     copyq
-    deltachat-desktop
+    cpufetch
+    djvulibre
     dive
     distrobox
     docker-compose
+    emacsPackages.gnuplot
+    exiftool
     fastfetch
     fd
     feh
     filezilla
-    freeplane
+    ffmpeg
     fzf
     gemini-cli
     gh
     git
+    gnumake
+    gnuplot
+    gnuradio
     go
     gost
     gpick
+    grc
     heroic
     homebank
     i3blocks-gaps
+    imagemagick
     isd
     jitsi-meet-electron
+    kitty
     kmon
     krita
     libreoffice-fresh
     llama-cpp
     lolcat
+    lsd
     lshw
     flameshot
     mangohud
     masscan
+    mediainfo
     mpv
     multimarkdown
+    musikcube
     ncdu
+    neovim
     netscanner
     nmap
     nomacs
@@ -222,11 +245,12 @@ in
     thunderbird
     tmux
     librewolf
-    ooniprobe-cli
+    ollama
     p7zip
     pastel
     patchelf
     picom-pijulius
+    pinentry-curses
     progress
     protonup-ng
     pulsemixer
@@ -234,7 +258,7 @@ in
     python314
     qemu_full
     qtox
-    ranger
+    qwen-code
     remmina
     ripgrep
     rofi
@@ -244,9 +268,10 @@ in
     st
     tmatrix
     translate-shell
+    trash-cli
     unrar-wrapper
     unzip
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vlc
     wavemon
     wget
     wikiman
@@ -254,9 +279,12 @@ in
     winetricks
     wireshark
     xev
+    myNixpkgs.yazi
     yt-dlp
+    zapret
     zathura
     zip
+    zoxide
   ];
 
   fonts.packages = with pkgs; [
@@ -343,7 +371,7 @@ in
         # };
         # };
     };
-    home.stateVersion = "25.05";
+    home.stateVersion = "25.11";
   };
 
   home-manager.useGlobalPkgs = true;
